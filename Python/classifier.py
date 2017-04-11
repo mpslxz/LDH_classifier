@@ -1,6 +1,6 @@
 import numpy as np
 import theano.tensor as T
-from theano_ops.Ops import dense, bn, dropout
+from theano_ops.Ops import dense
 from theano_ops.activations import softmax, sigmoid, relu
 from theano_ops.base_model import TheanoModel
 from theano_ops.utils import to_categorical
@@ -31,6 +31,7 @@ class SpineClassifier(TheanoModel):
         self.cost = T.sum((T.sub(self.outputs, self.y))**2).mean() + self.lmbd * l2_norm_squared
         diff = abs(T.argmax(self.outputs, axis=1) - T.argmax(self.y, axis=1))
         self.acc = T.sub(1, 1.*T.nonzero(diff)[0].shape[0] / self.y.shape[0])
+
 
 if __name__ == "__main__":
     # x_train = np.load('train_x.npy').astype('float32')

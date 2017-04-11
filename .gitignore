@@ -1,2 +1,3 @@
 training_samples/
 *.npy
+Python/theano_ops/

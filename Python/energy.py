@@ -18,11 +18,12 @@ def energy_features(img, bands=np.array([0.4, 0.3, 0.3])):
         mask[0:bandwidth, 0:bandwidth] = 1
         area = bandwidth**2 - int(sum_bands * transformed.shape[0])**2
         band_energy = np.sum(np.abs(np.multiply(mask, transformed)))
-        energies.append((1./np.sqrt(area)) * (band_energy - energy_sums))
+        energies.append((1./np.sqrt(area)) * np.abs(band_energy - energy_sums))
         energy_sums += band_energy
         sum_bands += band
     return np.array(energies)
 
 if __name__ == "__main__":
-    test = np.random.random((256, 256))
+    test = np.zeros((256, 256))
+    test[50:160, :] = 1
     print energy_features(test)

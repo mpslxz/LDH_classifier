@@ -25,5 +25,4 @@ def energy_features(img, bands=np.array([0.4, 0.3, 0.3])):
 
 if __name__ == "__main__":
     test = np.zeros((256, 256))
-    test[50:160, :] = 1
     print energy_features(test)
